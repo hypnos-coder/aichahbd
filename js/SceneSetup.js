@@ -57,7 +57,7 @@ function createHeartTexture() {
     canvas.height = 64;
     const ctx = canvas.getContext('2d');
 
-    // Draw heart
+    // Clip to heart shape
     ctx.beginPath();
     ctx.moveTo(32, 18);
     ctx.bezierCurveTo(32, 14, 28, 5, 16, 5);
@@ -66,8 +66,16 @@ function createHeartTexture() {
     ctx.bezierCurveTo(48, 52, 64, 39, 64, 25);
     ctx.bezierCurveTo(64, 25, 64, 5, 48, 5);
     ctx.bezierCurveTo(36, 5, 32, 14, 32, 18);
-    ctx.fillStyle = '#ffffff'; // White so material color tints it perfectly
-    ctx.fill();
+    ctx.closePath();
+    ctx.clip();
+
+    // Radial gradient: white center → mid-blue → dark navy edge
+    const gradient = ctx.createRadialGradient(32, 32, 0, 32, 32, 32);
+    gradient.addColorStop(0,   '#ffffff');
+    gradient.addColorStop(0.45, '#5b8dd9');
+    gradient.addColorStop(1,   '#0d1b4b');
+    ctx.fillStyle = gradient;
+    ctx.fillRect(0, 0, 64, 64);
 
     const texture = new THREE.CanvasTexture(canvas);
     return texture;
@@ -80,9 +88,9 @@ function createParticleSystem(scene) {
     for(let i=0; i<count*3; i++) pos[i] = (Math.random() - 0.5) * 20;
     geo.setAttribute('position', new THREE.BufferAttribute(pos, 3));
     
-    // Lavender/Gold particles
+    // White material so the gradient texture renders without tinting
     const mat = new THREE.PointsMaterial({ 
-        color: 0xe0b0ff, 
+        color: 0xffffff, 
         size: 0.6, 
         map: createHeartTexture(),
         transparent: true, 
