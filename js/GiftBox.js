@@ -3,10 +3,10 @@
 export function createGiftBox(scene) {
     const giftBox = new THREE.Group();
 
-    // Deep Velvet Red / Purple
-    const baseMat = new THREE.MeshPhongMaterial({ color: 0x4a0e4a, shininess: 10 });
-    // Deep orchid/mauve — blends with the lavender/purple scene palette
-    const ribbonMat = new THREE.MeshPhongMaterial({ color: 0x9b4f9b, specular: 0xd7aaff, shininess: 120 });
+    // Dark Navy Blue
+    const baseMat = new THREE.MeshPhongMaterial({ color: 0x0a0e2e, shininess: 10 });
+    // Royal Blue ribbon — complements the dark blue box
+    const ribbonMat = new THREE.MeshPhongMaterial({ color: 0x1a3a8f, specular: 0xaac4ff, shininess: 120 });
 
     // Base - Hollow box (5 pieces instead of a solid cube)
     const baseGroup = new THREE.Group();
