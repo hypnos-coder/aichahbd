@@ -1,0 +1,38 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Romantic Birthday Surprise 3D</title>
+    <link rel="stylesheet" href="style.css">
+</head>
+<body>
+
+    <audio id="bgm" src="bgm.mp3" loop></audio>
+    <audio id="popSound" src="pop.mp3"></audio>
+
+    <div id="ui-layer">
+        <div class="title" id="topTitle">For You</div>
+        <div class="hint" id="interactionHint">Tap here to open the Gift</div>
+    </div>
+
+    <div id="message-box">
+        <h1 class="seq-text" id="seq1">To my precious kumba...</h1>
+        <h1 class="seq-text" id="seq2">Happy Birthday</h1>
+        <h1 class="seq-text" id="seq3">May you live long, and prosper with lots of joy</h1>
+    </div>
+
+    <!-- Three.js from CDN -->
+    <script src="https://cdnjs.cloudflare.com/ajax/libs/three.js/r128/three.min.js"></script>
+    <script src="https://cdn.jsdelivr.net/npm/three@0.128.0/examples/js/controls/OrbitControls.js"></script>
+    <script src="https://cdn.jsdelivr.net/npm/three@0.128.0/examples/js/postprocessing/EffectComposer.js"></script>
+    <script src="https://cdn.jsdelivr.net/npm/three@0.128.0/examples/js/postprocessing/RenderPass.js"></script>
+    <script src="https://cdn.jsdelivr.net/npm/three@0.128.0/examples/js/postprocessing/ShaderPass.js"></script>
+    <script src="https://cdn.jsdelivr.net/npm/three@0.128.0/examples/js/shaders/CopyShader.js"></script>
+    <script src="https://cdn.jsdelivr.net/npm/three@0.128.0/examples/js/shaders/LuminosityHighPassShader.js"></script>
+    <script src="https://cdn.jsdelivr.net/npm/three@0.128.0/examples/js/postprocessing/UnrealBloomPass.js"></script>
+    
+    <!-- Entry point module -->
+    <script type="module" src="js/main.js"></script>
+</body>
+</html>

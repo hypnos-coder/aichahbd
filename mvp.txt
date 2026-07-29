@@ -1,0 +1,34 @@
+MVP Analysis & Design Rationale:
+To meet your request for a romantic air and Antigravity-style build, I've transitioned the concept into a Three.js 3D environment. Here is the breakdown:
+
+The Romantic Air (Palette & Atmosphere):
+
+Colors: I used a "Deep Velvet Red" (0x4a0e0e) for the box and "Rose Gold" (0xd4af37) for the ribbons.
+
+Lighting: Added a soft pinkish PointLight inside the box that creates a glow as it opens, along with a dark, moody radial gradient background to make the colors pop.
+
+Vibe: The scene uses a gentle floating animation for the box and slow-moving golden "dust" particles to create a magical atmosphere.
+
+The "Real Roses" Reveal:
+
+Since loading external 3D models of roses can be unreliable in a single-file preview, I created procedural 3D roses using nested sphere geometries to mimic petals and cylindrical stems.
+
+When the box opens, these roses surge upwards with varying speeds and gentle swaying motions, creating a lush, blooming effect.
+
+Interaction Mechanics:
+
+State 1 (Wait): The box floats and rotates slightly. A "Tap to Open" button glows at the bottom.
+
+State 2 (The Pop): Upon clicking, the lid flies off into the distance, the "Happy Birthday" typography fades in with a neon glow, and the roses begin their ascent.
+
+MVP Terms for Build:
+
+Scene: 3D Environment (Three.js), Ambient + Spot + Point Lighting.
+
+Assets: Procedural Gift Box (BoxGeom), Procedural Roses (Sphere/Cylinder cluster), Particle System (BufferGeometry).
+
+Animation: requestAnimationFrame loop handling lid physics and rose trajectory.
+
+UI Overlay: CSS-based typography with transparent gradients for that premium look.
+
+You can click Preview to see the 3D gift box in action. Click the box to trigger the romantic reveal!
