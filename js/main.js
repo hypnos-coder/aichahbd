@@ -3,10 +3,12 @@ import { initScene } from './SceneSetup.js';
 import { createGiftBox } from './GiftBox.js';
 import { createRose } from './Rose.js';
 import { createConfettiBurst, updateConfetti } from './Confetti.js';
+import { spawnPhotos, updatePhotoSprites } from './PhotoSprite.js';
 
 let scene, camera, renderer, composer, innerLight, particles;
 let giftBoxGroup, lid, boxMeshes, baseRibbons;
 let roses = [];
+let photos = [];
 let confettiList = [];
 let isOpened = false;
 let clock = new THREE.Clock();
@@ -115,6 +117,9 @@ function openGift() {
     for(let i=0; i<20; i++) {
         roses.push(createRose(scene));
     }
+
+    // Spawn photo overlay cards — pop-in then float on screen
+    spawnPhotos();
 }
 
 function animate() {
@@ -158,6 +163,9 @@ function animate() {
 
         // Update Confetti physics
         updateConfetti(confettiList);
+
+        // Fly photos off-screen
+        updatePhotoSprites(photos, time);
     }
 
     // Particle movement (floating hearts)
