@@ -56,9 +56,19 @@ export function spawnPhotos() {
     });
 }
 
+function getResponsiveConfig() {
+    const w = window.innerWidth;
+    if (w <= 480) {
+        return { size: 75, maxHeight: 90, ampMult: 0.35 };
+    } else if (w <= 768) {
+        return { size: 95, maxHeight: 115, ampMult: 0.55 };
+    }
+    return { size: 135, maxHeight: 160, ampMult: 1.0 };
+}
+
 function spawnOne(container, path, index) {
     const slot = PERIMETER_SLOTS[index % PERIMETER_SLOTS.length];
-    const SIZE = 135; // photo width in px
+    const cfg  = getResponsiveConfig();
 
     const wrapper = document.createElement('div');
     
@@ -67,7 +77,7 @@ function spawnOne(container, path, index) {
         position: 'absolute',
         left: '50%',
         top: '55%',
-        width: `${SIZE}px`,
+        width: `${cfg.size}px`,
         transform: 'translate(-50%, -50%) scale(0) rotate(0deg)',
         transformOrigin: 'center center',
         transition: 'left 2.2s cubic-bezier(0.2, 0.9, 0.3, 1), top 2.2s cubic-bezier(0.2, 0.9, 0.3, 1), transform 2.2s cubic-bezier(0.2, 0.9, 0.3, 1), opacity 1.0s ease-out',
@@ -80,12 +90,12 @@ function spawnOne(container, path, index) {
     Object.assign(img.style, {
         width: '100%',
         height: 'auto',
-        maxHeight: '160px',
+        maxHeight: `${cfg.maxHeight}px`,
         objectFit: 'cover',
-        borderRadius: '12px',
-        boxShadow: '0 8px 30px rgba(0,0,0,0.6), 0 0 15px rgba(170,196,255,0.35)',
+        borderRadius: '10px',
+        boxShadow: '0 6px 20px rgba(0,0,0,0.6), 0 0 12px rgba(170,196,255,0.35)',
         display: 'block',
-        border: '2px solid rgba(170,196,255,0.3)',
+        border: '1.5px solid rgba(170,196,255,0.3)',
         background: 'rgba(5, 13, 46, 0.8)',
     });
 
@@ -104,7 +114,7 @@ function spawnOne(container, path, index) {
             setTimeout(() => {
                 // Clear initial CSS transitions so JS rAF smooth motion takes over cleanly
                 wrapper.style.transition = 'none';
-                startDynamicFloat(wrapper, slot, index);
+                startDynamicFloat(wrapper, slot, index, cfg.ampMult);
             }, 2300);
         });
     });
@@ -114,11 +124,11 @@ function spawnOne(container, path, index) {
  * Dynamic floating animation loop.
  * Creates smooth organic figure-8 / dual-sine wave swaying with subtle tilt and breathing scale.
  */
-function startDynamicFloat(wrapper, slot, index) {
+function startDynamicFloat(wrapper, slot, index, ampMult = 1.0) {
     const baseRot  = slot.rot;
-    const ampX     = 25 + (index % 3) * 8;      // 25px - 41px horizontal sway range
-    const ampY     = 20 + (index % 4) * 6;      // 20px - 38px vertical sway range
-    const rotAmp   = 4 + (index % 3) * 2;       // 4deg - 8deg rotation tilt amplitude
+    const ampX     = (25 + (index % 3) * 8) * ampMult;  // Scaled horizontal sway range
+    const ampY     = (20 + (index % 4) * 6) * ampMult;  // Scaled vertical sway range
+    const rotAmp   = 4 + (index % 3) * 2;              // 4deg - 8deg rotation tilt amplitude
     
     // Unique speed & phase per card for asynchronous organic movement
     const speedX   = 0.0007 + (index * 0.00013);
