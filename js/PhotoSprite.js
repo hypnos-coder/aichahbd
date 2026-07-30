@@ -52,7 +52,7 @@ export function spawnPhotos() {
     IMAGE_PATHS.forEach((path, i) => {
         setTimeout(() => {
             spawnOne(c, path, i);
-        }, i * 180); // Staggered pop-outs
+        }, i * 380); // Staggered pop-outs (gentler sequence)
     });
 }
 
@@ -70,7 +70,7 @@ function spawnOne(container, path, index) {
         width: `${SIZE}px`,
         transform: 'translate(-50%, -50%) scale(0) rotate(0deg)',
         transformOrigin: 'center center',
-        transition: 'left 1.2s cubic-bezier(0.16, 1, 0.3, 1), top 1.2s cubic-bezier(0.16, 1, 0.3, 1), transform 1.2s cubic-bezier(0.16, 1, 0.3, 1), opacity 0.6s ease',
+        transition: 'left 2.2s cubic-bezier(0.2, 0.9, 0.3, 1), top 2.2s cubic-bezier(0.2, 0.9, 0.3, 1), transform 2.2s cubic-bezier(0.2, 0.9, 0.3, 1), opacity 1.0s ease-out',
         opacity: '0',
         willChange: 'transform, left, top',
     });
@@ -105,7 +105,7 @@ function spawnOne(container, path, index) {
                 // Clear initial CSS transitions so JS rAF smooth motion takes over cleanly
                 wrapper.style.transition = 'none';
                 startDynamicFloat(wrapper, slot, index);
-            }, 1250);
+            }, 2300);
         });
     });
 }
