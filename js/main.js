@@ -67,10 +67,10 @@ function startTextSequence() {
     const seq2 = document.getElementById('seq2');
     const seq3 = document.getElementById('seq3');
 
-    // Show Seq 1
+    // Show Seq 1 ("To my precious Aicha...")
     seq1.classList.add('seq-in');
     
-    // After 3.5 seconds, fade out seq 1 and show seq 2
+    // After 3.5 seconds, fade out seq 1 and show seq 2 ("Happy Birthday")
     setTimeout(() => {
         seq1.classList.remove('seq-in');
         seq1.classList.add('seq-out');
@@ -78,13 +78,13 @@ function startTextSequence() {
         seq2.classList.add('seq-in');
     }, 3500);
 
-    // After 7 seconds, fade out seq 2 and show seq 3
+    // After 9.0 seconds (5.5s duration for Happy Birthday), fade out seq 2 and show seq 3
     setTimeout(() => {
         seq2.classList.remove('seq-in');
         seq2.classList.add('seq-out');
         
         seq3.classList.add('seq-in');
-    }, 7000);
+    }, 9000);
 }
 
 function openGift() {

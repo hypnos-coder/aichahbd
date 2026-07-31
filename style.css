@@ -83,6 +83,13 @@ body {
     pointer-events: none;
 }
 
+#seq2 {
+    font-size: clamp(2.2rem, 5.5vw, 4.5rem) !important;
+    background: linear-gradient(to bottom, #ffffff, #ffd700, #aac4ff);
+    -webkit-background-clip: text;
+    -webkit-text-fill-color: transparent;
+}
+
 /* Neon Glow Animation */
 @keyframes neon-glow-seq {
     0% {
@@ -214,6 +221,10 @@ canvas {
         font-size: clamp(0.65rem, 2.7vw, 1.25rem) !important;
     }
 
+    #seq2 {
+        font-size: clamp(1.4rem, 4.8vw, 2.4rem) !important;
+    }
+
     #music-widget {
         top: 10px;
         right: 10px;
@@ -261,6 +272,10 @@ canvas {
 
     .seq-text {
         font-size: clamp(0.6rem, 2.6vw, 1.0rem) !important;
+    }
+
+    #seq2 {
+        font-size: clamp(1.2rem, 4.5vw, 1.8rem) !important;
     }
 }
 
